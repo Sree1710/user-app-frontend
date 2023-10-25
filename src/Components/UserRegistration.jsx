@@ -21,6 +21,7 @@ const UserRegistration = () => {
                 (Response)=>{
                     if (Response.data.status=="success") {
                         alert("User Registered Successfully")
+                        setInputField({name:"",dob:"",age:"",address:"",email:"",username:"",password:"",confirmpass:""})
                     } else {
                         alert("Something Went Wrong!!")
                     }
