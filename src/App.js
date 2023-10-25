@@ -6,7 +6,7 @@ import UserRegistration from './Components/UserRegistration';
 function App() {
   return (
     <div>
-    <UserRegistration/>
+    
     </div>
   );
 }
