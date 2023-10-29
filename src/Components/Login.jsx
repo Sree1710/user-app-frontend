@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const Login = () => {
@@ -5,12 +6,25 @@ const Login = () => {
         {username:"",password:""}
     )
 
+    const apiLink="http://localhost:3001/login"
+
     const inputHandler=(event)=>{
         setInputField({...inputField,[event.target.name]:event.target.value})
     }
 
     const readValue=()=>{
         console.log(inputField)
+        axios.post(apiLink,inputField).then(
+            (Response)=>{
+                if (Response.data.status=="success") {
+                    let getName=Response.data.data.name
+                    console.log(getName)
+                    alert("Logged In Successfully by "+getName)
+                } else {
+                    alert(Response.data.status)
+                }
+            }
+        )
     }
 
   return (
