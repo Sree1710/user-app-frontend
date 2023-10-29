@@ -5,6 +5,7 @@ import UserRegistration from './Components/UserRegistration';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AddPost from './Components/AddPost';
 import ViewPost from './Components/ViewPost';
+import SearchPost from './Components/SearchPost';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/regu' exact element={<UserRegistration/>} />
       <Route path='/addp' exact element={<AddPost/>}/>
       <Route path='/viewp' exact element={<ViewPost/>} />
+      <Route path='/searchp' exact element={<SearchPost/>} />
     </Routes>
     </BrowserRouter>
     </div>
