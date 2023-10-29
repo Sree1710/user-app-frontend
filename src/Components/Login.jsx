@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import AddPost from './AddPost'
 
 const Login = () => {
     const [inputField,setInputField]=useState(
         {username:"",password:""}
     )
+
+    const navigate=useNavigate()
 
     const apiLink="http://localhost:3001/login"
 
@@ -17,9 +21,7 @@ const Login = () => {
         axios.post(apiLink,inputField).then(
             (Response)=>{
                 if (Response.data.status=="success") {
-                    let getName=Response.data.data.name
-                    console.log(getName)
-                    alert("Logged In Successfully by "+getName)
+                    navigate("/addp")
                 } else {
                     alert(Response.data.status)
                 }
