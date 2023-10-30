@@ -22,6 +22,8 @@ const Login = () => {
         axios.post(apiLink,inputField).then(
             (Response)=>{
                 if (Response.data.status=="success") {
+                    let userid=Response.data.data._id
+                    sessionStorage.setItem("userid",userid)
                     navigate("/addp")
                 } else {
                     alert(Response.data.status)

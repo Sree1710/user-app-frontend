@@ -4,7 +4,7 @@ import NavBar2 from './NavBar2'
 
 const AddPost = () => {
     const [inputField,setInputField]=useState(
-    {userID:"",postTitle:"",postDesc:"",postCreateDate:""}
+    {userID:sessionStorage.getItem("userid"),postTitle:"",postDesc:"",postCreateDate:""}
     )
 
     const apiLink="http://localhost:3001/addp"
@@ -37,10 +37,6 @@ const AddPost = () => {
                     <div className="row g-3">
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <h1>Add Post</h1>
-                        </div>
-                        <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                            <label htmlFor="" className="form-label">User ID</label>
-                            <input onChange={inputHandler} type="text" className="form-control" name="userID" value={inputField.userID} />
                         </div>
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <label htmlFor="" className="form-label">Post Title</label>

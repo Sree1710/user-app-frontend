@@ -8,7 +8,7 @@ const ViewPost = () => {
     )
     
     const [deleteField,setDeleteField]=useState(
-        {userID:"",postTitle:"",postDesc:"",postCreateDate:""}
+        {_id:"",userID:"",postTitle:"",postDesc:"",postCreateDate:""}
     )
 
     const deleteHandler=(event)=>{
@@ -19,7 +19,8 @@ const ViewPost = () => {
     const apiLink2="http://localhost:3001/deletep"
 
     const getData=()=>{
-       axios.get(apiLink).then(
+        let userid={"userID":sessionStorage.getItem("userid")}
+       axios.post(apiLink,userid).then(
         (Response)=>{
             setPostData(Response.data)
             setDeleteField(Response.data[0])
@@ -28,12 +29,14 @@ const ViewPost = () => {
        )
     }
 
-    const deleteValue=()=>{
-        console.log(deleteField)
-        axios.post(apiLink2,deleteField).then(
+    const deleteValue=(id)=>{
+        let data={"_id":id}
+        console.log(data)
+        axios.post(apiLink2,data).then(
             (Response)=>{
                 if (Response.data.status=="success") {
                     alert("Post Deleted Successfully!!!")
+                    getData()
                 } else {
                     alert("Something Went Wrong!!!")
                 }
@@ -51,7 +54,7 @@ const ViewPost = () => {
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                         <div className="row g-3">
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                <h1>View Post</h1>
+                                <h1>View My Post</h1>
                             </div>
                             {postData.map(
                                 (value,index)=>{
@@ -62,7 +65,7 @@ const ViewPost = () => {
                                                 <p onChange={deleteHandler} className="card-text" name="postTitle" value={deleteField.postTitle} >Title: {value.postTitle}</p>
                                                 <p onChange={deleteHandler} className="card-text" name="postDesc" value={deleteField.postDesc} >Description: {value.postDesc}</p>
                                                 <p onChange={deleteHandler} className="card-text" name="postCreateDate" value={deleteField.postCreateDate} >Created Date: {value.postCreateDate}</p>
-                                                <a onClick={deleteValue} className="btn btn-danger">Delete</a>
+                                                <a onClick={()=>{deleteValue(value._id)}} className="btn btn-danger">Delete</a>
                                             </div>
                                     </div>
                                 </div>
